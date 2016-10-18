@@ -1,0 +1,6 @@
+node_modules/
+config/
+*.sublime-project
+*.sublime-settings
+vendor/
+*.env
