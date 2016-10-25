@@ -13,7 +13,16 @@ class Item extends Entity
     public $object_name = "Item";
 
     public $columns_list = [
-    	'Item Name'=>'itemname'
+    	'Item Name'=>'itemname',
+        'user'=>'userId',
+        'category'=>'category_id',
+        'opportunity'=>'opportunity_id',
+        'cost'=>'cost',
+        'description'=>'description',
+        'create_at'=>'create_at',
+        'update_at'=>'update_at',
+        'attachment'=>'attachment',
+        'status'=>'status'
     ];
 }
 
