@@ -26,7 +26,11 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role','users_roles');
+        return $this->hasOne('App\Role','role_id','id');
+    }
+
+    public function supervisor(){
+        return $this->hasOne('App\User','id');
     }
 
     public function hasRole($check)

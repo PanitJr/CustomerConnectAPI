@@ -12,6 +12,8 @@ class apiResponse extends \Response {
 		return response()->json($result);
 	}
 
+
+
 	public static function error($code, $massage) {
 		return response()->json([
 			"success" => false,

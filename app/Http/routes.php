@@ -13,7 +13,7 @@ if (! function_exists('objectRun')) {
 	 */
 	function objectRun($ProcessFile,$mainObjectName = null) {
 		return function(Request $Request,$objectName = null) use ($ProcessFile,$mainObjectName) {	
-			$objectName = !$mainObjectName?$objectName:$mainObjectName;
+			$objectName = !$mainObjectName ? $objectName : $mainObjectName;
 			return ObjectController::getResult($Request,$objectName,$ProcessFile);
 		};
 	}
@@ -26,20 +26,23 @@ Route::get('/', function () {
 Route::group(['prefix' => 'img'],function(){
 	Route::get('{objectName}/{id}/{field}/{image_name}','ImageController@create');
 
+
 });
 
 Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 
-    //Route::get('object_home','Object\ObjectController@object_home');
-    Route::get('{objectName}/list',objectRun('CCList'));
-
     Route::match(['post','options'],'login', 'User\loginController@login');
+
+    // Route::match(['post','options'],'login/google', 'User\loginController@loginGoogle');
 
 	Route::group(['middleware'=>"App\Http\Middleware\VerifyApiToken"],function(){		
 
 		Route::match(['post','options'],'current_user', 'User\userController@current');
 
 		Route::get('object_home','Object\ObjectController@object_home');
+        // to get user object
+         Route::get('user/list','User\userController@object_all_user');
+       // Route::get('user/list','User\userController@object_all_user');
 
 		Route::get('{objectName}/list',objectRun('CCList'));	
 

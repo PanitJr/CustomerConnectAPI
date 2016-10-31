@@ -16,4 +16,18 @@ class userController extends Controller
     		"user"=>Auth::user()
     	]);
     }
+
+    public function object_all_user(){
+        $objectAll['heads'] = ["Id","Name","Nickname","Email","Role","Supervisor","Status"];
+        $objectAll['total'] = \App\User::count();
+        $objectAll['object'] = \App\User::all();
+
+
+        // $objectAll = [["id"=>99,"name"=>"User","tablename"=>"users","fieldname"=>"usersname"]];
+        return apiResponse::success($objectAll);
+    }
+
+
+
+
 }

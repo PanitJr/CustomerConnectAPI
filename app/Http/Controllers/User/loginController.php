@@ -12,7 +12,7 @@ class loginController extends userController
     {
 		if(Auth::attempt([
 			"email"=>$request->input("u"),	
-			"password"=>$request->input("p"),	
+			"password"=>$request->input("p"),
 		],true))
 		{
 			$response = apiResponse::success([
@@ -23,4 +23,21 @@ class loginController extends userController
 		}
     	return $response;
     }
+
+//    public function loginGoogle(Request $request)
+//    {
+//        if(Auth::attempt([
+//            "email"=>$request->input("e"),
+//        ],true))
+//        {
+//            $response = apiResponse::success([
+//                "token"=>Auth::user()->getRememberToken()
+//            ]);
+//        }else {
+//            $response = apiResponse::error("LOGIN_FAIL","Login Fail");
+//        }
+//        return $response;
+//    }
+
+
 }

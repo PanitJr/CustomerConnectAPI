@@ -49,6 +49,8 @@ class ObjectController extends BaseObjectController
         return apiResponse::success($objectAll); 
     }
 
+
+
     public static function getResult(Request $Request,$objectName,$processFile)
     {
         $className = Loader::getObjectClassName($processFile,$objectName); 
