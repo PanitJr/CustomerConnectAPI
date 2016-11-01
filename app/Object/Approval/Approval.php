@@ -3,7 +3,6 @@
 namespace App\Object\Approval;
 
 use App\Object\CC\Entity;
-
 class Approval extends Entity
 {
 	public $table = 'cc_approvals';

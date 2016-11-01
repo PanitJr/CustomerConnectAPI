@@ -58,6 +58,7 @@ class CCDetail
 
     public function convertData($objectModel)
     {
+
         return $objectModel;
     }
 }

@@ -19,8 +19,6 @@ class Item extends Entity
         'opportunity'=>'opportunity_id',
         'cost'=>'cost',
         'description'=>'description',
-        'create_at'=>'create_at',
-        'update_at'=>'update_at',
         'attachment'=>'attachment',
         'status'=>'status'
     ];
