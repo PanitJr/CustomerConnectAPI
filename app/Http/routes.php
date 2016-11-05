@@ -28,10 +28,16 @@ Route::group(['prefix' => 'img'],function(){
 //	Route::get('object_home','Object\ObjectController@object_home');
 //	Route::get('list','Object\ObjectController@queryList');
 //	Route::get('{objectName}/list',objectRun('CCList'));
-//	Route::get('list','Expense\expenseController@submitted_List');
+	Route::get('list','Expense\expenseController@submitted_List');
 //	Route::get('list2','Expense\expenseController@approved_List');
 //	Route::get('list3','Expense\expenseController@rejected_List');
 //	Route::get('list4','Expense\expenseController@paid_List');
+//	Route::get('meter', objectRun('taxi\price','Expense'));
+//	//Route::get('detail/{record}','Expense\expenseController@detail_List');
+//	Route::get('Expense/detail/{record}', objectRun('CCDetail'));
+////	Route::get('list',objectRun('CCList'));
+	Route::get('{ItemName}/list',objectRun('CCList'));
+
 });
 
 Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
@@ -43,25 +49,17 @@ Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 
 	Route::group(['middleware'=>"App\Http\Middleware\VerifyApiToken"],function(){
 
-
 		Route::match(['post','options'],'current_user', 'User\userController@current');
 
 		Route::get('object_home','Object\ObjectController@object_home');
 
-		//Route::get('{objectName}/list',objectRun('CCList'));
-		//Submitted Expense
-		Route::get('Expense/list','Expense\expenseController@submitted_List');
+		Route::get('{objectName}/detail/{record}', objectRun('ExpenseDetail'));
 
-		//approved Expense
-		Route::get('Expense/list2','Expense\expenseController@approved_List');
+		Route::get('{objectName}/list',objectRun('CCList'));
 
-		//rejected Expense
-		Route::get('Expense/list3','Expense\expenseController@rejected_List');
+		Route::get('{objectName}/taxi/meter', objectRun('taxi\price','Expense'));
 
-		//paid Expense
-		Route::get('Expense/list4','Expense\expenseController@paid_List');
 
-		Route::get('{objectName}/detail/{record}', objectRun('CCDetail'));
 
 		Route::get('{objectName}/edit/{record?}', objectRun('CCEdit'));
 
@@ -69,16 +67,13 @@ Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 
 		Route::match(['post','options'],'{objectName}/delete/{record}', objectRun('CCDelete'));
 
-		Route::group(['prefix' => 'Expen'],function(){
+		Route::group(['prefix' => 'Expense'],function(){
 
-			Route::get('taxi/mitor', objectRun('taxi\price','Expense'));
-
-
-
-			//Expense Status
-			//Route::get('queryList','Expense\expenseController@queryList');
+			//Route::get('taxi/meter', objectRun('taxi\price','Expense'));
 
 			Route::match(['post','options'],'edit/{record?}', objectRun('CCSave','Expense'));
+
+
 		});					
 
 		/**

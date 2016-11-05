@@ -4,7 +4,7 @@ namespace App\Object\Expense;
 
 use App\Object\CC\Entity;
 use App\Object\ExpenseStatus\ExpenseStatus;
-use App\Object\Item;
+use App\Object\Item\Item;
 
 class Expense extends Entity
 {
@@ -16,12 +16,15 @@ class Expense extends Entity
 
     public $columns_list = [
     	'Expense'=>'expensename',
+        'Owner' => 'user_id',
         'Total Cost' => 'total_price',
         'Status' => 'status_id'
     ];
+
+
     public function item()
     {
-        return $this->hasMany(Item\Item::class,'item_id','id');
+        return $this->hasMany(Item::class,'id','item_id');
     }
     public function status()
     {

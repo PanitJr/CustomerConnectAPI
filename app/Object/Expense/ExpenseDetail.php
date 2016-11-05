@@ -1,11 +1,16 @@
 <?php
+/**
+ * Created by IntelliJ IDEA.
+ * User: Eieigrm
+ * Date: 4/11/2559
+ * Time: 15:49
+ */
 
-namespace App\Object\CC;
-
+namespace app\Object\Expense;
 use App\CC\Loader;
-use App\CC\Error\ApiException;
+use App\Object\CC\CCDetail as detail;
 
-class CCDetail 
+class ExpenseDetail  extends detail
 {
     public function checkPermission($request)
     {
@@ -16,8 +21,8 @@ class CCDetail
         $error_code = "ACCESS_DENIED";
         if(!$objectModel)
         {
-        throw new ApiException($error_code, 'Record not found ! ');
-    }
+            throw new ApiException($error_code, 'Record not found ! ');
+        }
         if( $objectModel->entity->deleted ==1)
         {
             throw new ApiException($error_code, 'The record you are trying to view has been deleted.');
@@ -26,7 +31,7 @@ class CCDetail
     }
 
     public function process($request)
-    {   
+    {
         $objectName = $request->route('objectName');
         $record = (int)$request->route('record');
         $objectClass =  Loader::getObject($objectName);
@@ -34,31 +39,31 @@ class CCDetail
         $label = $objectModel->getLabel();
         $layout =$this->convertLayout($objectModel);
         $data = $this->convertData($objectModel);
-              
+
         return [
-                "objectname"=>$objectName,
-                "record"=>$record,
-                "label"=>$label,
-                "blocks"=>$layout,
-                "data"=>$data
-            ]; 
+            "objectname"=>$objectName,
+            "record"=>$record,
+            "label"=>$label,
+            "blocks"=>$layout,
+            "data"=>$data
+        ];
     }
 
     public function convertLayout($objectModel)
     {
-    	$layout = [];
-    	$Object = $objectModel->getObject();
-    	$Blocks = $Object->getBlock()->orderby('sequence')->get();
-    	foreach ($Blocks as $Block) {
-			$Fields = $Block->getField()->orderby('sequence')->get();
-			$Block->fields = $Fields;
-    	}
-    	return $Blocks;
+        $layout = [];
+        $Object = $objectModel->getObject();
+        $Blocks = $Object->getBlock()->orderby('sequence')->get();
+        foreach ($Blocks as $Block) {
+            $Fields = $Block->getField()->orderby('sequence')->get();
+            $Block->fields = $Fields;
+        }
+        return $Blocks;
     }
 
     public function convertData($objectModel)
     {
-
+        $objectModel->item;
         return $objectModel;
     }
 }
