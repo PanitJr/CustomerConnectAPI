@@ -24,7 +24,7 @@ class Expense extends Entity
 
     public function item()
     {
-        return $this->hasMany(Item::class,'id','item_id');
+        return $this->hasMany(Item::class,'expense id','id');
     }
     public function status()
     {
