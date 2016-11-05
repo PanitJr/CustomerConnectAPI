@@ -15,7 +15,7 @@ class ObjectController extends BaseObjectController
         // $objectAll = \App\CC\ObjectBasic::whereIn("id" ,[4,5])->get();
         //$objectAll = \App\CC\ObjectBasic::all();
         $objectAll = [["id"=>1,"name"=>"Item","tablename"=>"cc_items","fieldname"=>"itemname"],
-        //["id"=>2,"name"=>"Travel","tablename"=>"cc_travels","fieldname"=>"traveltypeid"],
+        ["id"=>2,"name"=>"Travel","tablename"=>"cc_travels","fieldname"=>"traveltypeid"],
         //["id"=>3,"name"=>"TravelType","tablename"=>"cc_traveltypes","fieldname"=>"traveltypename"],
         //["id"=>4,"name"=>"TravelSubType","tablename"=>"cc_travelsubtypes","fieldname"=>"travelsubtypename"],
         //["id"=>5,"name"=>"MRTCost","tablename"=>"cc_mrtcosts","fieldname"=>"mrtcost"],
@@ -31,9 +31,9 @@ class ObjectController extends BaseObjectController
         //["id"=>15,"name"=>"BRTStation","tablename"=>"cc_brtstations","fieldname"=>"brtstationname"],
         //["id"=>16,"name"=>"BRTCostStation","tablename"=>"cc_brtcoststations","fieldname"=>"brtcoststationname"],
         //["id"=>17,"name"=>"TaxiAppType","tablename"=>"cc_taxiapptypes","fieldname"=>"taxiapptypename"],
-        //["id"=>18,"name"=>"Service","tablename"=>"cc_services","fieldname"=>"servicename"],
-        //["id"=>19,"name"=>"Other","tablename"=>"cc_others","fieldname"=>"othername"],
-        //["id"=>20,"name"=>"Medical","tablename"=>"cc_medicals","fieldname"=>"medicalname"],
+        ["id"=>18,"name"=>"Service","tablename"=>"cc_services","fieldname"=>"servicename"],
+        ["id"=>19,"name"=>"Other","tablename"=>"cc_others","fieldname"=>"othername"],
+        ["id"=>20,"name"=>"Medical","tablename"=>"cc_medicals","fieldname"=>"medicalname"],
         //["id"=>21,"name"=>"Permission","tablename"=>"cc_permissions","fieldname"=>"permissionname"],
         //["id"=>22,"name"=>"ProfilePermission","tablename"=>"cc_profilepermissions","fieldname"=>"profilepermissionname"],
         //["id"=>23,"name"=>"UserStatus","tablename"=>"cc_userstatuss","fieldname"=>"userstatusname"],
@@ -51,6 +51,9 @@ class ObjectController extends BaseObjectController
 
     public static function getResult(Request $Request,$objectName,$processFile)
     {
+//        var_dump($objectName);
+//        var_dump($processFile);
+//        exit;
         $className = Loader::getObjectClassName($processFile,$objectName); 
         $handler = new $className();
         return self::run($handler,$Request);  

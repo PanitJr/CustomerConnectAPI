@@ -31,7 +31,7 @@ Route::group(['prefix' => 'img'],function(){
 Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 
     //Route::get('object_home','Object\ObjectController@object_home');
-    Route::get('{objectName}/list',objectRun('CCList'));
+    //Route::get('Item/list',objectRun('CCList'));
 
     Route::match(['post','options'],'login', 'User\loginController@login');
 

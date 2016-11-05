@@ -15,6 +15,9 @@ class Other extends Entity
     public $columns_list = [
     	'other_name'=>'othername'
     ];
+    public function item(){
+        return $this->hasOne(Item::class,'id','item_id');
+    }
 }
 
 

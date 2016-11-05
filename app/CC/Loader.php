@@ -6,7 +6,7 @@ use File;
 class Loader
 {
 	public static function getObjectClassName($name ,$objectName = "CC")
-	{	
+	{
 		$classNameTemp = "\\App\\Object\\%s\\%s";
 		$fileNameTemp = base_path("app/Object/%s/%s.php");
 		$fileNameFormat = str_replace("\\", "/", $name);
@@ -19,6 +19,8 @@ class Loader
 		{
 			$className = sprintf($classNameTemp,$object,$name);
 			$filename = sprintf($fileNameTemp,$object,$fileNameFormat);
+//            var_dump($object);
+//            exit;
 			if(File::exists($filename))
 			{
 				$handler = $className;

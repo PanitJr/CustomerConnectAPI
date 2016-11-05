@@ -3,6 +3,7 @@
 namespace App\Object\Item;
 
 use App\Object\CC\Entity;
+use App\Object\Travel\Travel;
 
 class Item extends Entity
 {
@@ -14,16 +15,26 @@ class Item extends Entity
 
     public $columns_list = [
     	'Item Name'=>'itemname',
-        'user'=>'userId',
-        'category'=>'category_id',
-        'opportunity'=>'opportunity_id',
+        'category'=>'category',
+        'opportunity'=>'opportunity',
         'cost'=>'cost',
         'description'=>'description',
-        'create_at'=>'create_at',
-        'update_at'=>'update_at',
         'attachment'=>'attachment',
-        'status'=>'status'
+        'status'=>'status',
+        'date'=>'item_date'
     ];
+    public function travel(){
+        return $this->hasOne(Travel::class,'item_id','id');
+    }
+    public function service(){
+        return $this->hasOne(Service::class,'item_id','id');
+    }
+    public function Other(){
+        return $this->hasOne(Travel::class,'item_id','id');
+    }
+    public function medical(){
+        return $this->hasOne(Travel::class,'item_id','id');
+    }
 }
 
 

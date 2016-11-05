@@ -15,6 +15,9 @@ class Service extends Entity
     public $columns_list = [
     	'service_name'=>'servicename'
     ];
+    public function item(){
+        return $this->hasOne(Item::class,'id','item_id');
+    }
 }
 
 

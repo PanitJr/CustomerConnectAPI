@@ -15,6 +15,9 @@ class Medical extends Entity
     public $columns_list = [
     	'medical_name'=>'medicalname'
     ];
+    public function item(){
+        return $this->hasOne(Item::class,'id','item_id');
+    }
 }
 
 
