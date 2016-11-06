@@ -13,7 +13,7 @@ class ObjectController extends BaseObjectController
     public function object_home()
     {
         // $objectAll = \App\CC\ObjectBasic::whereIn("id" ,[4,5])->get();
-        //$objectAll = \App\CC\ObjectBasic::all();
+      //  $objectAll = \App\CC\ObjectBasic::all();
         $objectAll = [["id"=>1,"name"=>"Item","tablename"=>"cc_items","fieldname"=>"itemname"],
         //["id"=>2,"name"=>"Travel","tablename"=>"cc_travels","fieldname"=>"traveltypeid"],
         //["id"=>3,"name"=>"TravelType","tablename"=>"cc_traveltypes","fieldname"=>"traveltypename"],
@@ -44,9 +44,11 @@ class ObjectController extends BaseObjectController
         //["id"=>28,"name"=>"ItemCategory","tablename"=>"cc_itemcategorys","fieldname"=>"itemcategoryname"],
         //["id"=>29,"name"=>"ItemStatus","tablename"=>"cc_itemstatuss","fieldname"=>"itemstatusname"],
         //["id"=>30,"name"=>"TaxiApp","tablename"=>"cc_taxiapps","fieldname"=>"taxiapptypeid"],
-        ["id"=>31,"name"=>"Leave","tablename"=>"cc_leaves","fieldname"=>"leavename"]];
+        ["id"=>31,"name"=>"Leave","tablename"=>"cc_leaves","fieldname"=>"leavename"],
         //["id"=>32,"name"=>"LeaveType","tablename"=>"cc_leavetypes","fieldname"=>"leavetypename"]];
-        return apiResponse::success($objectAll); 
+          ["id"=>33,"name"=>"Profile","tablename"=>"cc_profiles","fieldname"=>"profile"]
+        ];
+        return apiResponse::success($objectAll);
     }
 
     public static function getResult(Request $Request,$objectName,$processFile)
