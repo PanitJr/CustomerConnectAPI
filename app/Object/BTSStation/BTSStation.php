@@ -13,7 +13,8 @@ class BTSStation extends Entity
     public $object_name = "BTSStation";
 
     public $columns_list = [
-    	'bts_station'=>'btsstation'
+    	'bts_station'=>'btsstation',
+        'btsstationcode'=>'btsstationcode'
     ];
 }
 

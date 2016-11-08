@@ -35,6 +35,7 @@ class Item extends Entity
     public function medical(){
         return $this->hasOne(Travel::class,'item_id','id');
     }
+
 }
 
 
