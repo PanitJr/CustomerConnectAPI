@@ -5,6 +5,7 @@ namespace App\Object\Expense;
 use App\Object\CC\Entity;
 use App\Object\ExpenseStatus\ExpenseStatus;
 use App\Object\Item\Item;
+use App\User;
 
 class Expense extends Entity
 {
@@ -28,7 +29,12 @@ class Expense extends Entity
     }
     public function status()
     {
-        return $this->hasOne(ExpenseStatus::class,'status_id','id');
+        return $this->hasOne(ExpenseStatus::class,'id','status_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
     }
 }
 

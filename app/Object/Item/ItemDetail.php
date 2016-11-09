@@ -45,6 +45,7 @@ class ItemDetail extends detail
 
     public function convertData($objectModel)
     {
+        $objectModel->user;
         return $objectModel;
     }
 }

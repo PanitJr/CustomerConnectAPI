@@ -25,25 +25,16 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'img'],function(){
 	Route::get('{objectName}/{id}/{field}/{image_name}','ImageController@create');
-//	Route::get('object_home','Object\ObjectController@object_home');
-//	Route::get('list','Object\ObjectController@queryList');
-//	Route::get('{objectName}/list',objectRun('CCList'));
-	Route::get('list','Expense\expenseController@submitted_List');
-//	Route::get('list2','Expense\expenseController@approved_List');
-//	Route::get('list3','Expense\expenseController@rejected_List');
-//	Route::get('list4','Expense\expenseController@paid_List');
-//	Route::get('meter', objectRun('taxi\price','Expense'));
-//	//Route::get('detail/{record}','Expense\expenseController@detail_List');
-//	Route::get('Expense/detail/{record}', objectRun('CCDetail'));
-////	Route::get('list',objectRun('CCList'));
+
+//	Route::get('list','Expense\expenseController@submitted_List');
+
 	Route::get('{ItemName}/list',objectRun('CCList'));
+
+//	Route::get('pdf','Expense\pdfExpenseController@getPDF');
 
 });
 
 Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
-
-    //Route::get('object_home','Object\ObjectController@object_home');
-    //Route::get('{objectName}/list',objectRun('CCList'));
 
     Route::match(['post','options'],'login', 'User\loginController@login');
 
@@ -53,13 +44,19 @@ Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 
 		Route::get('object_home','Object\ObjectController@object_home');
 
+		//Expense
+
 		Route::get('{objectName}/detail/{record}', objectRun('ExpenseDetail'));
 
-		Route::get('{objectName}/list',objectRun('CCList'));
+		Route::get('{objectName}/expenseList',objectRun('ExpenseList'));
 
-		Route::get('{objectName}/taxi/meter', objectRun('taxi\price','Expense'));
+		Route::get('{objectName}/ItemList',objectRun('CCList'));
 
+		Route::get('pdf','Expense\pdfExpenseController@getPDF');
 
+//		Route::get('{objectName}/taxi/meter', objectRun('taxi\price','Expense'));
+
+		// end Expense
 
 		Route::get('{objectName}/edit/{record?}', objectRun('CCEdit'));
 
@@ -72,7 +69,6 @@ Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 			//Route::get('taxi/meter', objectRun('taxi\price','Expense'));
 
 			Route::match(['post','options'],'edit/{record?}', objectRun('CCSave','Expense'));
-
 
 		});					
 
@@ -89,7 +85,6 @@ Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 				Route::get('object/{objectName}', 'Object\Settings\LayoutController@object');	
 			});
 		});
-			
 
 	});
 
@@ -104,6 +99,4 @@ Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 		Route::match(['post','options'],'edit/{objectName}', 'Object\ObjectController@editObject');
 		Route::match(['post','options'],'delete/{objectName}', 'Object\ObjectController@deleteObject');
 	});
-
-
 });

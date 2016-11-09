@@ -33,8 +33,11 @@ return array(
     'Gelf\\' => array($vendorDir . '/graylog2/gelf-php/src/Gelf'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
+    'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
+    'Codedge\\Fpdf\\' => array($vendorDir . '/codedge/laravel-fpdf/src'),
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
+    'Barryvdh\\DomPDF\\' => array($vendorDir . '/barryvdh/laravel-dompdf/src'),
     'App\\' => array($baseDir . '/app'),
 );

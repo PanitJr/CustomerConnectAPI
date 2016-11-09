@@ -8,6 +8,7 @@
 
 namespace app\Object\Expense;
 use App\CC\Loader;
+use App\object\CC;
 use App\Object\CC\CCDetail as detail;
 
 class ExpenseDetail  extends detail
@@ -64,6 +65,10 @@ class ExpenseDetail  extends detail
     public function convertData($objectModel)
     {
         $objectModel->item;
+        $objectModel->Entity;
+        $objectModel->status;
+        $objectModel->user;
+
         return $objectModel;
     }
 }

@@ -12,30 +12,6 @@ class apiResponse extends \Response {
 		return response()->json($result);
 	}
 
-//	public static function success2($input = null) {
-//		$result['success'] = true;
-//		if ($input) {
-//			$result['data'] = $input;
-//		}
-//		return response()->json($result);
-//	}
-//
-//	public static function success3($input = null) {
-//		$result['success'] = true;
-//		if ($input) {
-//			$result['data'] = $input;
-//		}
-//		return response()->json($result);
-//	}
-//
-//	public static function success4($input = null) {
-//		$result['success'] = true;
-//		if ($input) {
-//			$result['data'] = $input;
-//		}
-//		return response()->json($result);
-//	}
-
 	public static function error($code, $massage) {
 		return response()->json([
 			"success" => false,
