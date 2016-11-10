@@ -39,6 +39,7 @@ Route::group(['prefix' => 'img'],function(){
 Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 
     Route::match(['post','options'],'login', 'User\loginController@login');
+	Route::match(['post','options'],'logingoogle', 'User\loginController@loginGoogle');
 
 	Route::group(['middleware'=>"App\Http\Middleware\VerifyApiToken"],function(){
 
@@ -59,6 +60,23 @@ Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 //		Route::get('{objectName}/taxi/meter', objectRun('taxi\price','Expense'));
 
 		// end Expense
+
+//		//user prefix
+//		Route::group(['prefix' => 'user',"middleware" =>"App\Http\Middleware\VerifyProfilePermission"], function () {
+		Route::group(['prefix' => 'user'], function () {
+			// to get user list
+			Route::get('{objectName}/list', 'User\userController@object_all_user');
+			// get user detailed
+			Route::get('{objectName}/detail/{record?}', 'User\userController@object_a_user');
+			Route::get('{objectName}/edit/{record?}', 'User\userController@addUser');
+			Route::get('{objectName}/edit/{record?}', 'User\userController@editUserPage');
+			Route::match(['post', 'options'], '{objectName}/edit/{record?}', 'User\userController@saveUser');
+			Route::match(['post','options'],'{objectName}/delete/{record}', 'User\userController@deleteUser');
+		});
+		//userstatus ,role
+		Route::get('picklist/statususer/list', 'AAA\userStatusController@object_all_userstatus');
+		Route::get('picklist/role/list', 'AAA\roleController@object_all_role');
+
 
 		Route::get('{objectName}/edit/{record?}', objectRun('CCEdit'));
 

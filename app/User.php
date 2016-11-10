@@ -24,10 +24,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
-    {
-        return $this->belongsToMany('App\Role','users_roles');
-    }
+    public $columns_list = [
+        'Id'=>'id',
+        'Name'=>'name',
+        'Nickname'=>'nickname',
+        'Email'=>'email',
+        'Role'=>'role_id',
+        'Supervisor'=>'supervisor_id',
+        'Status'=>'status_id',
+        'Profile'=>'profile_id',
+        'Firstname'=>'firstname',
+        'Lastname'=>'lastname',
+    ];
+
+//    public function roles()
+//    {
+//        return $this->belongsToMany('App\Role','users_roles');
+//    }
 
     public function hasRole($check)
     {
@@ -38,4 +51,24 @@ class User extends Authenticatable
     {
         $this->roles()->attach($role->id);
     }
+    //
+    public function roles()
+    {
+        return $this->hasOne('App\Role','id','role_id');
+    }
+
+    public function profile()
+    {
+        return $this->hasOne('App\Object\profilewithpermission\profilewithpermission','id','profile_id');
+    }
+
+    public function status()
+    {
+        return $this->hasOne('App\Object\UserStatus\UserStatus','id','status_id');
+    }
+
+    public function supervisor(){
+        return $this->hasOne('App\User','id','id');
+    }
+    //
 }
