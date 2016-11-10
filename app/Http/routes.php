@@ -18,9 +18,11 @@ if (! function_exists('objectRun')) {
 		};
 	}
 }
+Route::get('pdf','Expense\pdfExpenseController@getPDF');
 
 Route::get('/', function () {
 	return view('welcome');
+
 });
 
 Route::group(['prefix' => 'img'],function(){
