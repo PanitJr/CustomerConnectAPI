@@ -13,7 +13,8 @@ class AirPortRailLinkStation extends Entity
     public $object_name = "AirPortRailLinkStation";
 
     public $columns_list = [
-    	'airportraillink_station'=>'airportraillinkstation'
+    	'airportraillink_station'=>'airportraillinkstation',
+        'airportlinkstationcode'=>'airportlinkstationcode'
     ];
 }
 

@@ -4,8 +4,10 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule as SysSchedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Auth;
 use DB;
 use App\CC\Loader;
+use League\Flysystem\Exception;
 
 class Kernel extends ConsoleKernel
 {
@@ -31,23 +33,28 @@ class Kernel extends ConsoleKernel
     protected function schedule(SysSchedule $schedule)
     {
         //$schedule->command('sf:promotion_discount_salesforce')->daily();
-        $schedule->call(function () {
-            $users = DB::table('user')->get();
-            $opportunities = DB::table('cc_opportunity')->where('status','>',0)->get();
-            foreach ($users as $user){
-                foreach ($opportunities as $opp)
-                $items = DB::table('cc_item')
-                    ->join('entitys','cc_item.id','=',$user.id)
-                    ->where('status','<',2)
-                    ->where('cc_item.opportunity','=',$opp.id)
-                    ->get();
-                    foreach ($items as $item){
-                        $objectClass = 	Loader::getObject('Expense');
-                        $objectModel = new $objectClass();
-                        $objectModel->expensename = "test schedule";
-                        $objectModel->save();
-                }
-            }
-        })->everyMinute();
+//        $schedule->call(function () {
+//            $users = DB::table('users')->get();
+//            $opportunities = DB::table('cc_opportunity')->where('status','>',0)->get();
+//            foreach ($users as $user){
+//                foreach ($opportunities as $opp){
+//                $items = DB::table('cc_item')
+//                    ->join('entitys','cc_item.id','=',$user.id)
+//                    ->where('status','<',2)
+//                    ->where('cc_item.opportunity','=',$opp.id)
+//                    ->get();
+//                    foreach ($items as $item){
+//            Auth::loginUsingId(1);
+//            $objectClass = Loader::getObject('Expense');
+//            $objectModel = new $objectClass();
+//            $objectModel->expensename = "test schedule";
+//
+//            $objectModel->save();
+
+//                }
+//                }
+//            }
+
+//        })->everyMinute();
     }
 }

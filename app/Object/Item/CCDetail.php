@@ -8,8 +8,12 @@ class CCDetail extends detail
 {
     public function convertData($objectModel)
     {
-        $objectModel->travel;
+        if($objectModel->category == "Travel"){$objectModel->Travel;}
+        else if($objectModel->category == "Service"){$objectModel->Service;}
+        else if($objectModel->category == "Other"){$objectModel->Other;}
+        else if($objectModel->category == "Medical"){$objectModel->Medical;}
         $objectModel->Entity;
+        $objectModel->item_date = date("d-m-Y",strtotime($objectModel->item_date));
         return $objectModel;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Object\Other;
 
 use App\Object\CC\Entity;
+use App\Object\Item\Item;
 
 class Other extends Entity
 {

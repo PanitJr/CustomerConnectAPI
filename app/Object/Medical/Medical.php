@@ -3,6 +3,7 @@
 namespace App\Object\Medical;
 
 use App\Object\CC\Entity;
+use App\Object\Item\Item;
 
 class Medical extends Entity
 {

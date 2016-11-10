@@ -3,6 +3,7 @@
 namespace App\Object\Service;
 
 use App\Object\CC\Entity;
+use App\Object\Item\Item;
 
 class Service extends Entity
 {

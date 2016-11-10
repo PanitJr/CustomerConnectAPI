@@ -3,7 +3,11 @@
 namespace App\Object\Item;
 
 use App\Object\CC\Entity;
+use App\Object\Expense\Expense;
 use App\Object\Travel\Travel;
+use App\Object\Service\Service;
+use App\Object\Other\Other;
+use App\Object\Medical\Medical;
 
 class Item extends Entity
 {
@@ -23,17 +27,20 @@ class Item extends Entity
         'status'=>'status',
         'date'=>'item_date'
     ];
-    public function travel(){
+    public function Travel(){
         return $this->hasOne(Travel::class,'item_id','id');
     }
-    public function service(){
+    public function Service(){
         return $this->hasOne(Service::class,'item_id','id');
     }
     public function Other(){
-        return $this->hasOne(Travel::class,'item_id','id');
+        return $this->hasOne(Other::class,'item_id','id');
     }
-    public function medical(){
-        return $this->hasOne(Travel::class,'item_id','id');
+    public function Medical(){
+        return $this->hasOne(Medical::class,'item_id','id');
+    }
+    public function Expense(){
+        return $this->hasOne(Expense::class,'id','expense_id');
     }
 
 }

@@ -7,11 +7,10 @@
  */
 
 namespace App\Object\Item;
+use App\CC\Loader;
+use App\Object\CC\CCSave as save;
 
-use App\Object\Expense\Expense;
-use App\User;
-
-class Submit
+class Submit extends save
 {
     public function checkPermission($request)
     {
@@ -20,17 +19,19 @@ class Submit
 
     public function process($request)
     {
-        $user = User::All();
-        foreach ($user as $u) {
-            $listModel = DB::table('cc_items')
-                ->join('entitys','cc_items.id','=','entitys.id')
-                ->join('users','users.id','=',$u->id)
-                ->get();
-            foreach ($listModel as $item) {
-                $item->status = 1;
+        $record = (int)$request->route('record');
+        $objectClassItem = 	Loader::getObject('Item');
+        $objectModelItem = $objectClassItem::find($record);
 
-                $item->save();
-            }
+        if($request->get('expense_id') == null){
+            $objectClassExpense = Loader::getObject('Expense');
+            $objectModelExpense = new $objectClassExpense();
+            $objectModelExpense->expensename = $request->get('opportunity')."-".$request->get('item_date');
+            $objectModelExpense->save();
+
+                $objectModelItem->expense_id = $objectModelExpense->id;
+                $objectModelItem->save();
         }
+        return $objectModelItem;
     }
 }

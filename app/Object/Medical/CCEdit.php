@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Object\Travel;
+namespace App\Object\Medical;
 
 use App\Object\CC\CCEdit as Edit ;
 

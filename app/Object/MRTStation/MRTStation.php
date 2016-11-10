@@ -13,7 +13,8 @@ class MRTStation extends Entity
     public $object_name = "MRTStation";
 
     public $columns_list = [
-    	'mrt_station'=>'mrtstation'
+    	'mrt_station'=>'mrtstation',
+        'mrtstationcode'=>'mrtstationcode'
     ];
 }
 

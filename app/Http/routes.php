@@ -23,6 +23,19 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
+//
+//Route::get('/excel', function () {
+//    Excel::create('Laravel Excel', function($excel) {
+//
+//        $excel->sheet('Excel sheet', function($sheet) {
+//
+//            $sheet->setOrientation('landscape');
+//
+//        });
+//
+//    })->export('xls');
+//});
+
 Route::group(['prefix' => 'img'],function(){
 	Route::get('{objectName}/{id}/{field}/{image_name}','ImageController@create');
 
@@ -51,11 +64,11 @@ Route::group(['prefix' => 'api' ,"middleware" =>['cors','GZip']], function () {
 
 		Route::match(['post','options'],'{objectName}/delete/{record}', objectRun('CCDelete'));
 
-		Route::group(['prefix' => 'Expen'],function(){
+		Route::group(['prefix' => 'Item'],function(){
 
-			Route::get('taxi/mitor', objectRun('taxi\price','Expen'));
+			Route::get('submit/{record?}', objectRun('Submit','Item'));
 
-			Route::match(['post','options'],'edit/{record?}', objectRun('CCSave','Expen'));			
+			Route::match(['post','options'],'Submit/{record?}', objectRun('Submit','Item'));
 		});					
 
 		/**

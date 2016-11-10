@@ -13,7 +13,8 @@ class BRTStation extends Entity
     public $object_name = "BRTStation";
 
     public $columns_list = [
-    	'brt_station_name'=>'brtstationname'
+    	'brt_station_name'=>'brtstationname',
+        'brtstationcode'=>'brtstationcode'
     ];
 }
 

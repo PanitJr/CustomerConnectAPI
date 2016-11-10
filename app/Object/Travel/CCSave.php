@@ -13,7 +13,7 @@ class CCSave extends save
 
     public function process($request)
     {
-//        $model = parent::process($request);
+        $model = parent::process($request);
 //        $itemData = $request->get('item');
 //        $itemObj = $model->item;
 //        $itemObj->itemname = $itemData['itemname'];
@@ -27,7 +27,7 @@ class CCSave extends save
 //        $model->set('item_id',$itemObj->get('id'));
 //        $model->save();
 //
-//        return $model;
+        return $model;
     }
 
 }
