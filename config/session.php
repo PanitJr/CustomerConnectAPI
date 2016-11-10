@@ -16,7 +16,8 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+   'driver' => env('SESSION_DRIVER', 'file'),
+ //   'driver' => env('SESSION_DRIVER', ' cookies'),
 
     /*
     |--------------------------------------------------------------------------
@@ -135,7 +136,8 @@ return [
     |
     */
 
-    'domain' => null,
+   // 'domain' => null,
+    'domain' => 'http://localhost:3000',
 
     /*
     |--------------------------------------------------------------------------

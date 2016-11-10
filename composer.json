@@ -8,7 +8,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "stojg/crop": "^1.2",
-        "graylog2/gelf-php": "^1.5"
+        "graylog2/gelf-php": "^1.5",
+        "google/apiclient": "2.0.*",
+        "laravel/socialite": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

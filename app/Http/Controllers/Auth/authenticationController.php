@@ -39,7 +39,7 @@ class authenticationController  extends Controller
 
         // $data = array('code' => $request->code, 'client_id' => '121236538621-rt7e8cgk9v4r5ptkrrvsmauu0o37sorp.apps.googleusercontent.com', 'client_secret' => '-7b4_T96QlgqGE48rc9ib3QM', 'redirect_uri' => 'http://localhost:8888', 'grant_type' => 'authorization_code');
 
-        $data = array('code' => $request->code, 'client_id' => '316967852944-dbqtiuetnhv8u30anjfgnmijkodjmvak.apps.googleusercontent.com', 'client_secret' => 'o6wZfIWGLpXsh6OnV_tGHP33', 'redirect_uri' => 'http://localhost:3000', 'grant_type' => 'authorization_code');
+      //  $data = array('code' => $request->code, 'client_id' => '316967852944-dbqtiuetnhv8u30anjfgnmijkodjmvak.apps.googleusercontent.com', 'client_secret' => 'o6wZfIWGLpXsh6OnV_tGHP33', 'redirect_uri' => 'http://localhost:3000', 'grant_type' => 'authorization_code');
 
         // use key 'http' even if you send the request to https://...
         //post to get access token

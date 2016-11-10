@@ -12,13 +12,14 @@ class apiResponse extends \Response {
 		return response()->json($result);
 	}
 
+    public static function error($code, $massage) {
+        return response()->json([
+            "success" => false,
+            "error_code" => $code,
+            "error_massage" => $massage,
+        ]);
+    }
 
 
-	public static function error($code, $massage) {
-		return response()->json([
-			"success" => false,
-			"error_code" => $code,
-			"error_massage" => $massage,
-		]);
-	}
+
 }
