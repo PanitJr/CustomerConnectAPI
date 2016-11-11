@@ -5,6 +5,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\apiResponse;
+use App\User;
 
 class loginController extends userController
 {
@@ -22,5 +23,19 @@ class loginController extends userController
 			$response = apiResponse::error("LOGIN_FAIL","Login Fail");
 		}
     	return $response;
+    }
+
+    public function loginGoogle(Request $request)
+    {
+        $auth = User::where('email', '=', $request->input("u"))->first();
+        if($auth){
+            Auth::login($auth,true);
+            $response = apiResponse::success([
+                "token"=>Auth::user()->getRememberToken()
+            ]);
+        }else {
+            $response = apiResponse::error("LOGIN_FAIL","Login Fail");
+        }
+        return $response;
     }
 }

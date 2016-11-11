@@ -10,6 +10,7 @@
         "stojg/crop": "^1.2",
         "graylog2/gelf-php": "^1.5",
         "mpdf/mpdf": "6.1.0"
+        "barryvdh/lavel-dompdf": "^0.7.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
