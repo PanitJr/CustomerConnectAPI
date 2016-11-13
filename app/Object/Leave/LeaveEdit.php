@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Object\Leave;
+use App\CC\Loader;
+use App\Object\CC\CCEdit as edit;
 
-use App\Object\CC\CCEdit as leaveedit;
-
-class CCEdit extends leaveedit
+class LeaveEdit extends edit
 {
     public function checkPermission($request)
     {
