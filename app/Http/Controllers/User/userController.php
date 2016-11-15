@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
+use App\Role;
 use Illuminate\Support\Facades\App;
 
 class userController extends Controller
@@ -28,7 +29,7 @@ class userController extends Controller
 
     public function object_all_user()
     {
-        $objectAll['heads'] = ["Id","Firstname","Nickname","Email","Role","Supervisor name","Status"];
+        $objectAll['heads'] = ["Id","Firstname","Lastname","Role","Status"];
         $objectAll['total'] = \App\User::count();
         $objectAll['object'] = \App\User::all();
 
@@ -42,6 +43,11 @@ class userController extends Controller
         $objectAll['fieldname'] = ["Firstname","Lastname","Nickname","Email","Supervisor name","Role","Profile","Status"];
         $objectAll['fieldfill'] = ["firstname","lastname","nickname","email","supervisor_id","role_id","profile_id","status_id"];
         $objectAll['object'] = \App\User::where('id','=',$record)->first();
+
+        $objectAll['object']->profile;
+        $objectAll['object']->status;
+        $objectAll['role']= \App\Role::where('id','=',$objectAll['object']->role_id)->first();
+        $objectAll['supervisor'] = \App\User::where('id','=',$objectAll['object']->supervisor_id)->first();
 
        // $objectAll['object'] = \App\User::all();
         // $objectAll = [["id"=>99,"name"=>"User","tablename"=>"users","fieldname"=>"usersname"]];
@@ -79,14 +85,18 @@ class userController extends Controller
 
             $requestData = $request->all();
             $email = $requestData['email'];
+            $emailDomain = explode('@', $email);
            $user = User::where('email', '=', $email)->first();
            if ($user) {
-               $response = apiResponse::error("Email is already exist", "please finding at the user list page");
-           } else {
+               $response = apiResponse::error("Email is already exist", "please find at the user list page");
+           }elseif ($emailDomain[1] != 'crm-c.club' && $emailDomain[1] != 'crmc.consulting'){
+               $response = apiResponse::error("Wrong domain", "Wrong domain");
+           }
+           else {
                 // newuser
                 $userNew = new User;
-                $userNew->firstname = $requestData['firstname'];
-                $userNew->lastname = $requestData['lastname'];
+//                $userNew->firstname = $requestData['firstname'];
+//                $userNew->lastname = $requestData['lastname'];
                 $userNew->nickname = $requestData['nickname'];
                 $userNew->email = $requestData['email'];
                 $userNew->supervisor_id = $requestData['supervisor_id'];
@@ -103,6 +113,9 @@ class userController extends Controller
                 $requestData = $request->all();
 //                $firstname =  $requestData['firstname'];
 //                  $email = $requestData['email'];
+//           if($user->email.equalTo($requestData['email'])&& ){
+//               $response = apiResponse::error("Email is already exist", "please find at the user list page");
+//           }else{
                 $user->firstname = $requestData['firstname'];
                 $user->lastname =$requestData['lastname'];
                 $user->nickname= $requestData['nickname'];
@@ -114,6 +127,7 @@ class userController extends Controller
                 $user->save();
 
                 $response = apiResponse::success($user);
+//           }
             }
 
         return $response;

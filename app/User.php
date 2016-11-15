@@ -2,6 +2,8 @@
 
 namespace App;
 use Auth;
+use App\Role;
+use App\Object\profilewithpermission\profilewithpermission;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Auth\Passwords\TokenRepositoryInterface;
@@ -61,15 +63,15 @@ class User extends Authenticatable
         return $this->hasOne('App\User','id','id');
     }
 
-    public function hasRole($check)
-    {
-        return in_array($check,array_fetch($this->roles->toArray(),'name'));        
-    }
-
-    public function assingRole($role)
-    {
-        $this->roles()->attach($role->id);
-    }
+//    public function hasRole($check)
+//    {
+//        return in_array($check,array_fetch($this->roles->toArray(),'name'));
+//    }
+//
+//    public function assingRole($role)
+//    {
+//        $this->roles()->attach($role->id);
+//    }
 
     public function getRememberToken()
     {

@@ -34,12 +34,28 @@ class loginController extends userController
 
     public function loginGoogle(Request $request)
     {
+        $userFname =$request->input("Fname");
+        $userLname =$request->input("Lname");
+
         $auth = User::where('email', '=', $request->input("u"))->first();
         if($auth){
-            Auth::login($auth,true);
-            $response = apiResponse::success([
-                "token"=>Auth::user()->getRememberToken()
-            ]);
+
+            if($auth->status_id!=1){
+                $response = apiResponse::error("Inactive user"," Inactive user");
+            }
+            else{
+                Auth::login($auth,true);
+
+                if(!$auth->firstname){
+                    $auth->firstname=$userFname;
+                    $auth->lastname=$userLname;
+                    $auth->save();
+                }
+                $response = apiResponse::success([
+                    "token"=>Auth::user()->getRememberToken()
+                ]);
+            }
+
         }else {
             $response = apiResponse::error("LOGIN_FAIL","Login Fail");
         }

@@ -21,16 +21,17 @@ class VerifyProfilePermission
     {
 
         $objectname = $request->route('objectName');
-
         $user = Auth::user();
         $pid = $user->profile_id;
         $p = profilewithpermission\profilewithpermission::where('id', '=', $pid)->first();
-if($objectname=='Expense'|| $objectname=='Item' || $objectname=='Leave') {
+
+    if($objectname=='Expense'|| $objectname=='Item' || $objectname=='Leave') {
 
     if ($user) {
         $itempermission = $p->item;
         $expensepermission = $p->expense;
         $leavepermission = $p->leave;
+
         if ($itempermission == 'true' && $objectname == 'Item') {
             return $next($request);
         } elseif ($expensepermission == 'true' && $objectname == 'Expense') {
@@ -52,7 +53,6 @@ elseif($objectname == 'user'){
     } else {
         return apiResponse::error("no permission", "no permission");
     }
-
 }
 elseif($objectname == 'profilewithpermission'){
     $userpermission = $p->user;

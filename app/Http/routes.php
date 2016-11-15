@@ -118,4 +118,5 @@ Route::group(['prefix' => 'img'],function(){
 		Route::match(['post','options'],'delete/{objectName}', 'Object\ObjectController@deleteObject');
 	});
 
+
 });

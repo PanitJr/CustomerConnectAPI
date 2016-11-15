@@ -48,7 +48,6 @@ return array(
     'App\\Http\\Controllers\\User\\loginController' => $baseDir . '/app/Http/Controllers/User/loginController.php',
     'App\\Http\\Controllers\\User\\userController' => $baseDir . '/app/Http/Controllers/User/userController.php',
     'App\\Http\\Controllers\\salesforceController' => $baseDir . '/app/Http/Controllers/salesforceController.php',
-    'App\\Http\\Controllers\\testController' => $baseDir . '/app/Http/Controllers/testController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CORS' => $baseDir . '/app/Http/Middleware/CORS.php',
